@@ -1,6 +1,7 @@
 package com.Boyce.CrudTemplate.adapter;
 
 import com.Boyce.CrudTemplate.controller.CrudController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerAdapter;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +17,9 @@ import java.lang.reflect.Method;
  */
 @Component
 public class CrudHandlerAdapter implements HandlerAdapter {
+    @Autowired
+    private CrudController crudController;
+
     @Override
     public boolean supports(Object o) {
         try {
@@ -31,7 +35,7 @@ public class CrudHandlerAdapter implements HandlerAdapter {
     @Override
     public ModelAndView handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         Method method = (Method) o;
-        return (ModelAndView) method.invoke(new CrudController(), httpServletRequest, httpServletResponse);
+        return (ModelAndView) method.invoke(crudController, httpServletRequest, httpServletResponse);
     }
 
     @Override
