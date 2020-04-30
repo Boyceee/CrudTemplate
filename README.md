@@ -17,7 +17,7 @@ CrudTemplate使用了SpringBoot框架以及一些maven依赖。所以如果你�
 
 ### Warning
 1.If you add a crud interface that has a path containing another crud interface's path,or being contained,
-only one crud interface will work.And the answer to the question that witch one will work depend on their path's hash code.
+only one crud interface will work.And the answer to the question that witch one will work depend on their path's hashCode() & (map's capacity -1) and the order of addition.
 
 1.如果添加的增删改查接口路径中包含其他增删改查接口的路径，或被其他接口路径包含，
-那么只有一个接口会起作用。哪个接口会起作用取决于接口路径的hash code。
+那么只有一个接口会起作用。哪个接口会起作用取决于接口路径的hashCode() & (map的当前最大容量 -1)和接口被添加的顺序。

@@ -1,6 +1,6 @@
-package com.Boyce.CrudTemplate.adapter;
+package com.boyce.crud.template.adapter;
 
-import com.Boyce.CrudTemplate.controller.CrudController;
+import com.boyce.crud.template.controller.CrudController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerAdapter;

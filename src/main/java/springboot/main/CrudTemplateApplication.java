@@ -1,6 +1,7 @@
-package SpringBootMainClass;
+package springboot.main;
 
-import com.Boyce.crud.template.controller.CrudController;
+import com.boyce.crud.template.controller.CrudController;
+import com.boyce.crud.template.model.TestTable;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,10 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 2020/4/9 10:46
  * @Version V1.0
  */
-@SpringBootApplication(scanBasePackages = {"com.Boyce.crud.template"})
+@SpringBootApplication(scanBasePackages = {"com.boyce.crud.template"})
 public class CrudTemplateApplication {
     public static void main(String[] args) {
-        CrudController.addCrudInterface("/test/dispatch","test");
+        CrudController.addCrudInterface("/test/dispatch",new TestTable());
         SpringApplication.run(CrudTemplateApplication.class,args);
     }
 }

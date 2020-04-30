@@ -1,7 +1,5 @@
-package com.Boyce.CrudTemplate.service;
+package com.boyce.crud.template.service;
 
-import java.util.List;
-import java.util.Map;
 
 /**
  * @Description
@@ -10,5 +8,10 @@ import java.util.Map;
  * @Version V1.0
  */
 public interface CrudJdbcService {
-    public List<Map<String,Object>> query(Object object);
+    /**
+     * @param object
+     * @return java.lang.String
+     * @description return the query result of json according to the given object
+     **/
+    public String query(Object object);
 }

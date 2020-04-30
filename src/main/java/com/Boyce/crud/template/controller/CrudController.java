@@ -1,6 +1,6 @@
-package com.Boyce.CrudTemplate.controller;
+package com.boyce.crud.template.controller;
 
-import com.Boyce.CrudTemplate.service.CrudJdbcService;
+import com.boyce.crud.template.service.CrudJdbcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,15 +44,14 @@ public class CrudController {
     public ModelAndView dispatch(HttpServletRequest request, HttpServletResponse response) {
         try {
             PrintWriter writer = response.getWriter();
-            List<Map<String, Object>> dataList = new ArrayList<>();
+            String json = "";
             for (Map.Entry<String, Object> entry : dispatchedInterfaces.entrySet()) {
                 if (request.getRequestURI().startsWith(entry.getKey())) {
-                    dataList = crudJdbcService.query(dispatchedInterfaces.get(entry.getKey()));
+                    json = crudJdbcService.query(dispatchedInterfaces.get(entry.getKey()));
                     break;
                 }
             }
-            //datalist转json
-            writer.print("{\"data\" : \"test\"}");
+            writer.print(json);
             writer.flush();
             writer.close();
         } catch (IOException e) {
