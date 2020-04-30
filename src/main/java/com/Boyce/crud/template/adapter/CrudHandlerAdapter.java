@@ -19,11 +19,12 @@ import java.lang.reflect.Method;
 public class CrudHandlerAdapter implements HandlerAdapter {
     @Autowired
     private CrudController crudController;
+    private final static String DISPATCH_METHOD = "dispatch";
 
     @Override
     public boolean supports(Object o) {
         try {
-            if (o.equals(CrudController.class.getMethod("dispatch", HttpServletRequest.class, HttpServletResponse.class))) {
+            if (o.equals(CrudController.class.getMethod(DISPATCH_METHOD, HttpServletRequest.class, HttpServletResponse.class))) {
                 return true;
             }
         } catch (NoSuchMethodException e) {
