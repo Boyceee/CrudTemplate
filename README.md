@@ -9,11 +9,11 @@ Using CrudTemplate,you can create crud interfaces withot write any code but a PO
 CrudTemplate used SpringBoot and some maven dependencies.
 So it will be really easy if you used the SpringBoot too.
 Using SpringBoot,all you need to do is delete the SpringBootMainClass directory
-and add "com.Boyce.CrudTemplate" to your @SpringBootApplication's(or @ComponentScan's) scanBasePackages. 
+and add "com.boyce.CrudTemplate" to your @SpringBootApplication's(or @ComponentScan's) scanBasePackages. 
 
 CrudTemplate使用了SpringBoot框架以及一些maven依赖。所以如果你也使用SpringBoot的话用起来会很方便。
 如果你需要使用CrudTemplate，你只需要删除我的SpringBootMainClass启动类，并在你的SpringBoot启动类上，通过@SpringBootApplication或者@ComponentScan，
-将"com.Boyce.CrudTemplate"包添加到扫描路径下即可。
+将"com.boyce.CrudTemplate"包添加到扫描路径下即可。
 
 ### Warning
 1.If you add a crud interface that has a path containing another crud interface's path,or being contained,

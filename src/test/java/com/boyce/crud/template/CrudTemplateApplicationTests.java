@@ -1,4 +1,4 @@
-package com.Boyce.crud.template;
+package com.boyce.crud.template;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
