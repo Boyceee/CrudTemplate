@@ -2,10 +2,10 @@ package com.boyce.crud.template.service;
 
 
 /**
- * @Description
- * @Author Boyce
- * @Date 2020/4/9 11:56
- * @Version V1.0
+ * @description
+ * @author Boyce
+ * @date 2020/4/9 11:56
+ * @version V1.0
  */
 public interface CrudJdbcService {
     /**

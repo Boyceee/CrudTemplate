@@ -6,10 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @Description
- * @Author Boyce
- * @Date 2020/4/9 10:46
- * @Version V1.0
+ * @description
+ * @author Boyce
+ * @date 2020/4/9 10:46
+ * @version V1.0
  */
 @SpringBootApplication(scanBasePackages = {"com.boyce.crud.template"})
 public class CrudTemplateApplication {

@@ -1,4 +1,4 @@
-package com.boyce.crud.template.service.serviceimpl;
+package com.boyce.crud.template.service.impl;
 
 import com.boyce.crud.template.annotation.Column;
 import com.boyce.crud.template.annotation.Table;
@@ -17,10 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Description
- * @Author Boyce
- * @Date 2020/4/9 13:42
- * @Version V1.0
+ * @description
+ * @author Boyce
+ * @date 2020/4/9 13:42
+ * @version V1.0
  */
 @Component
 public class CrudJdbcServiceImpl implements CrudJdbcService {
@@ -29,6 +29,11 @@ public class CrudJdbcServiceImpl implements CrudJdbcService {
     @Autowired
     private JdbcOperations jdbcOperations;
 
+    /**
+     * @param object
+     * @return java.lang.String
+     * @description return the query result of json according to the given object
+     **/
     @Override
     public String query(Object object) {
         String objectName = object.getClass().getName();
@@ -48,6 +53,11 @@ public class CrudJdbcServiceImpl implements CrudJdbcService {
         return parseListToJson(list, objectName, reverseFieldsMap(fieldsMap));
     }
 
+    /**
+     * @param object
+     * @return java.util.Map<java.lang.String,java.lang.String>
+     * @description get fields from object
+     **/
     private Map<String, String> getFields(Object object) {
         Field[] fields = object.getClass().getDeclaredFields();
         int maxLength = fields.length;
@@ -63,6 +73,11 @@ public class CrudJdbcServiceImpl implements CrudJdbcService {
         return map;
     }
 
+    /**
+     * @param object
+     * @return java.util.Map<java.lang.String,java.lang.String>
+     * @description get the target table from object
+     **/
     private Map<String, String> getTable(Object object) {
         Map<String, String> tableMap = new HashMap<>(1, 1);
         String table = "";
@@ -74,6 +89,11 @@ public class CrudJdbcServiceImpl implements CrudJdbcService {
         return tableMap;
     }
 
+    /**
+     * @param map
+     * @return java.util.Map<java.lang.String,java.lang.String>
+     * @description reverse target map's key and value
+     **/
     private Map<String, String> reverseFieldsMap(Map<String, String> map) {
         Map<String, String> reversedMap = new HashMap<>(map.size());
         for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -82,6 +102,13 @@ public class CrudJdbcServiceImpl implements CrudJdbcService {
         return reversedMap;
     }
 
+    /**
+     * @param list
+     * @param objectName
+     * @param fieldsMap
+     * @return java.lang.String
+     * @description parse the result list to json
+     **/
     private String parseListToJson(List<Map<String, Object>> list, String objectName, Map<String, String> fieldsMap) {
         String[] splits= objectName.split("\\.");
         objectName = splits[splits.length-1];
@@ -102,6 +129,11 @@ public class CrudJdbcServiceImpl implements CrudJdbcService {
         return json;
     }
 
+    /**
+     * @param object
+     * @return java.lang.String
+     * @description transfer an object to json
+     **/
     private String transformObjectToJson(Object object){
         if(CLASS_STRING.equals(object.getClass().getName())){
             return "\"" + object.toString() + "\"";

@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
- * @Description
- * @Author Boyce
- * @Date 2020/4/7 8:52 下午
+ * @description
+ * @author Boyce
+ * @date 2020/4/7 20:52
+ * @version V1.0
  */
 @Component
 public class CrudHandlerAdapter implements HandlerAdapter {
@@ -21,6 +22,12 @@ public class CrudHandlerAdapter implements HandlerAdapter {
     private CrudController crudController;
     private final static String DISPATCH_METHOD = "dispatch";
 
+    /**
+     * @param o
+     * @return boolean
+     * @description override the supports method to match CrudController's dispatch,
+     * so it will handle the Handler later
+     **/
     @Override
     public boolean supports(Object o) {
         try {
@@ -33,6 +40,13 @@ public class CrudHandlerAdapter implements HandlerAdapter {
         return false;
     }
 
+    /**
+     * @param httpServletRequest
+     * @param httpServletResponse
+     * @param o
+     * @return org.springframework.web.servlet.ModelAndView
+     * @description handle the Handler,by invoking the method
+     **/
     @Override
     public ModelAndView handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         Method method = (Method) o;
