@@ -86,6 +86,7 @@ public class CrudController {
 
     /**
      * do query
+     * "/query" interface basically support all of the https's methods.
      *
      * @param key
      * @param response
@@ -109,6 +110,8 @@ public class CrudController {
 
     /**
      * do insert
+     * Up to now,"/add" interface only support the content type of "application/x-www-form-urlencoded" and "application/json".
+     * As for http's methods,as long as they supported these two content type,it will be OK.
      *
      * @param key
      * @param request
