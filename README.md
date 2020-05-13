@@ -19,7 +19,7 @@ CrudTemplate使用了SpringBoot框架以及一些maven依赖。所以如果你�
 1.If you add a crud interface that has a path containing another crud interface's path,or being contained,
 only one crud interface will work.And the answer to the question that witch one will work depend on their path's hashCode() & (map's capacity -1) and the order of addition.  
 2.Make sure that you are using POJO's field name as the request parameter's key,not database's column name.  
-3."/query" interface basically support all of the https's methods.  
+3."/query" interface basically support all of the http's methods.  
 4.Up to now,"/add" interface only support the content type of "application/x-www-form-urlencoded" and "application/json".
 As for http's methods,as long as they supported these two content type,it will be OK.
 
