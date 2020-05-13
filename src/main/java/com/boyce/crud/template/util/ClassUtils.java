@@ -18,7 +18,7 @@ public class ClassUtils {
      * get <field's name,sql column> as <key,value> from object
      *
      * @param object
-     * @return java.util.Map<java.lang.String, java.lang.String>
+     * @return map of <field's name,sql column>
      */
     public static Map<String, String> getFields(Object object) {
         Field[] fields = object.getClass().getDeclaredFields();
@@ -39,7 +39,7 @@ public class ClassUtils {
      * get <object's name,sql table> as <key,value> from object
      *
      * @param object
-     * @return java.util.Map<java.lang.String, java.lang.String>
+     * @return map of <object's name,sql table>
      */
     public static Map<String, String> getTable(Object object) {
         String objectName = object.getClass().getName();

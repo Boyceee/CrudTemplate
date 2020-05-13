@@ -34,7 +34,6 @@ public class CrudController {
      *
      * @param string
      * @param object
-     * @return void
      */
     public static void addCrudInterface(String string, Object object) {
         dispatchedInterfaces.put(string, object);
@@ -45,7 +44,6 @@ public class CrudController {
      *
      * @param string
      * @param object
-     * @return void
      */
     public static void removeCrudInterface(String string, Object object) {
         if (!dispatchedInterfaces.remove(string, object)) {
@@ -56,8 +54,7 @@ public class CrudController {
     /**
      * get interfaces
      *
-     * @param
-     * @return java.util.Map<java.lang.String, java.lang.Object>
+     * @return all interfaces
      */
     public static Map<String, Object> getCrudInterfaces() {
         return dispatchedInterfaces;
@@ -68,7 +65,7 @@ public class CrudController {
      *
      * @param request
      * @param response
-     * @return org.springframework.web.servlet.ModelAndView
+     * @return null
      */
     public ModelAndView dispatch(HttpServletRequest request, HttpServletResponse response) {
         for (Map.Entry<String, Object> entry : dispatchedInterfaces.entrySet()) {
@@ -90,7 +87,6 @@ public class CrudController {
      *
      * @param key
      * @param response
-     * @return void
      */
     public void query(String key, HttpServletResponse response) {
         PrintWriter writer = null;
@@ -116,7 +112,6 @@ public class CrudController {
      * @param key
      * @param request
      * @param response
-     * @return void
      */
     public void add(String key, HttpServletRequest request, HttpServletResponse response) {
         PrintWriter writer = null;

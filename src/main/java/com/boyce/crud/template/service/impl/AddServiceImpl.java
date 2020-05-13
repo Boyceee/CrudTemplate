@@ -23,8 +23,6 @@ public class AddServiceImpl implements AddService {
     private static final Logger logger = LoggerFactory.getLogger(AddServiceImpl.class);
     static final String CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
     static final String CONTENT_TYPE_JSON = "application/json";
-    static final String METHOD_GET = "GET";
-    static final String METHOD_POST = "POST";
     @Autowired
     private JdbcOperations jdbcOperations;
 
@@ -33,7 +31,7 @@ public class AddServiceImpl implements AddService {
      *
      * @param httpServletRequest
      * @param object
-     * @return void
+     * @throws Exception
      */
     @Override
     public void add(HttpServletRequest httpServletRequest, Object object) throws Exception {

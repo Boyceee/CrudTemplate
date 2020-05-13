@@ -8,10 +8,11 @@ package com.boyce.crud.template.service;
  */
 public interface QueryService {
     /**
-     * return the query result of json according to the given object
+     * do select
      *
      * @param object
-     * @return java.lang.String
+     * @return the query result of json according to the given object
+     * @throws Exception
      */
     public String query(Object object) throws Exception;
 }

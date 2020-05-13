@@ -29,7 +29,8 @@ public class CrudHandlerMapping extends AbstractHandlerMapping {
      * override the get Handler method to match CrudController's dispatch
      *
      * @param httpServletRequest
-     * @return java.lang.Object
+     * @return CrudController's dispatch method
+     * @throws Exception
      */
     @Override
     protected Object getHandlerInternal(HttpServletRequest httpServletRequest) throws Exception {

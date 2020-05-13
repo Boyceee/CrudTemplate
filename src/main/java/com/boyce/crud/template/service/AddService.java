@@ -14,7 +14,7 @@ public interface AddService {
      *
      * @param httpServletRequest
      * @param object
-     * @return void
+     * @throws Exception
      */
     public void add(HttpServletRequest httpServletRequest, Object object) throws Exception;
 }

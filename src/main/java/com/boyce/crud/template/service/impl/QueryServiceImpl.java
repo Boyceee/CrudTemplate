@@ -27,10 +27,11 @@ public class QueryServiceImpl implements QueryService {
     private JdbcOperations jdbcOperations;
 
     /**
-     * return the query result of json according to the given object
+     * do select
      *
      * @param object
-     * @return java.lang.String
+     * @return the query result of json according to the given object
+     * @throws Exception
      */
     @Override
     public String query(Object object) throws Exception {
@@ -58,7 +59,7 @@ public class QueryServiceImpl implements QueryService {
      * reverse target map's key and value
      *
      * @param map
-     * @return java.util.Map<java.lang.String, java.lang.String>
+     * @return reversed map
      */
     private Map<String, String> reverseFieldsMap(Map<String, String> map) {
         Map<String, String> reversedMap = new HashMap<>(map.size());
@@ -74,7 +75,7 @@ public class QueryServiceImpl implements QueryService {
      * @param list
      * @param objectName
      * @param fieldsMap
-     * @return java.lang.String
+     * @return json of String
      */
     private String parseListToJson(List<Map<String, Object>> list, String objectName, Map<String, String> fieldsMap) {
         String[] splits = objectName.split("\\.");
@@ -97,10 +98,11 @@ public class QueryServiceImpl implements QueryService {
     }
 
     /**
-     * transform an object to String of json type
+     * transform an object to String
+     * if the object is String or char,then add \"\" to the result
      *
      * @param object
-     * @return java.lang.String
+     * @return String result
      */
     private String transformObjectToString(Object object) {
         if (object == null) {

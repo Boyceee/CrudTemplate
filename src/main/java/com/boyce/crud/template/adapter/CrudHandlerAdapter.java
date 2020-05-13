@@ -26,7 +26,7 @@ public class CrudHandlerAdapter implements HandlerAdapter {
      * so it will handle the Handler later
      *
      * @param o
-     * @return boolean
+     * @return support or not
      */
     @Override
     public boolean supports(Object o) {
@@ -46,7 +46,8 @@ public class CrudHandlerAdapter implements HandlerAdapter {
      * @param httpServletRequest
      * @param httpServletResponse
      * @param o
-     * @return org.springframework.web.servlet.ModelAndView
+     * @return null
+     * @throws Exception
      */
     @Override
     public ModelAndView handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
