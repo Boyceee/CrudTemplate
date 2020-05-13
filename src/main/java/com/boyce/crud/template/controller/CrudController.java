@@ -15,10 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @description
  * @author Boyce
- * @date 2020/4/7 21:18
  * @version V1.0
+ * @date 2020/4/7 21:18
  */
 @Component
 public class CrudController {
@@ -29,21 +28,23 @@ public class CrudController {
     private CrudJdbcService crudJdbcService;
 
     /**
+     * add interfaces
+     *
      * @param string
      * @param object
      * @return void
-     * @description add interfaces
-     **/
+     */
     public static void addCrudInterface(String string, Object object) {
         dispatchedInterfaces.put(string, object);
     }
 
     /**
+     * remove interfaces
+     *
      * @param string
      * @param object
      * @return void
-     * @description remove interfaces
-     **/
+     */
     public static void removeCrudInterface(String string, Object object) {
         if (!dispatchedInterfaces.remove(string, object)) {
             logger.error("removeCRUDInterface error : There is no such key-value in the Map.");
@@ -51,20 +52,22 @@ public class CrudController {
     }
 
     /**
+     * get interfaces
+     *
      * @param
-     * @return java.util.Map<java.lang.String,java.lang.Object>
-     * @description get interfaces
-     **/
+     * @return java.util.Map<java.lang.String, java.lang.Object>
+     */
     public static Map<String, Object> getCrudInterfaces() {
         return dispatchedInterfaces;
     }
 
     /**
+     * the entrance of the controller
+     *
      * @param request
      * @param response
      * @return org.springframework.web.servlet.ModelAndView
-     * @description the entrance of the controller
-     **/
+     */
     public ModelAndView dispatch(HttpServletRequest request, HttpServletResponse response) {
         try {
             PrintWriter writer = response.getWriter();

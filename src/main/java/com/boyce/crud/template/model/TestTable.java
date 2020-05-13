@@ -6,10 +6,9 @@ import com.boyce.crud.template.annotation.Table;
 import java.util.Date;
 
 /**
- * @description
  * @author Boyce
- * @date 2020/4/13 18:35
  * @version V1.0
+ * @date 2020/4/13 18:35
  */
 @Table(value = "test1")
 public class TestTable {
