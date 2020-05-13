@@ -16,6 +16,8 @@ public class TestTable {
     private String name;
     @Column(value = "save_time")
     private Date saveTime;
+    @Column(value = "is_ok")
+    private int isOk;
 
     public String getId() {
         return id;
