@@ -17,7 +17,15 @@ CrudTemplate使用了SpringBoot框架以及一些maven依赖。所以如果你�
 
 ### Warning
 1.If you add a crud interface that has a path containing another crud interface's path,or being contained,
-only one crud interface will work.And the answer to the question that witch one will work depend on their path's hashCode() & (map's capacity -1) and the order of addition.
+only one crud interface will work.And the answer to the question that witch one will work depend on their path's hashCode() & (map's capacity -1) and the order of addition.  
+2.Make sure that you are using POJO's field name as the request parameter's key,not database's column name.  
+3.When you are using "/query" interface,basically all of the https's methods are supported.  
+4.When you are using "/add" interface,up to now,only the content type of "application/x-www-form-urlencoded" and "application/json" are supported.
+As for http's methods,as long as they supported these two content type,it will be OK.
 
 1.如果添加的增删改查接口路径中包含其他增删改查接口的路径，或被其他接口路径包含，
-那么只有一个接口会起作用。哪个接口会起作用取决于接口路径的hashCode() & (map的当前最大容量 -1)和接口被添加的顺序。
+那么只有一个接口会起作用。哪个接口会起作用取决于接口路径的hashCode() & (map容量 -1)和接口被添加的顺序。  
+2.确保在发送的请求中，参数的key是POJO的属性名，而不是数据库的字段名。  
+3."/query"支持基本上所有http的method方法。  
+4."/add"接口目前只支持content type为"application/x-www-form-urlencoded"和"application/json"的请求，至于http的method，
+只要该method支持这两种content type，就可以使用。  
