@@ -4,10 +4,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * @description
  * @author Boyce
- * @date 2020/4/13 18:28
  * @version V1.0
+ * @date 2020/4/13 18:28
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Table {
