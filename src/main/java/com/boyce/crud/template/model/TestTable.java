@@ -11,11 +11,11 @@ import java.util.Date;
  * @date 2020/4/13 18:35
  * @version V1.0
  */
-@Table(name = "test1")
+@Table(value = "test1")
 public class TestTable {
     private String id;
     private String name;
-    @Column(name = "save_time")
+    @Column(value = "save_time")
     private Date saveTime;
 
     public String getId() {
