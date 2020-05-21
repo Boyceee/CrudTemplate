@@ -22,6 +22,8 @@ import java.util.Map;
 public class QueryServiceImpl implements QueryService {
     private static final String CLASS_STRING = "java.lang.String";
     private static final String CLASS_CHAR = "java.lang.Character";
+    private static final String CLASS_DATE = "java.util.Date";
+    private static final String CLASS_TIMESTAMP = "java.sql.Timestamp";
     private static final Logger logger = LoggerFactory.getLogger(QueryServiceImpl.class);
     @Autowired
     private JdbcOperations jdbcOperations;
@@ -107,7 +109,7 @@ public class QueryServiceImpl implements QueryService {
     private String transformObjectToString(Object object) {
         if (object == null) {
             return "\"\"";
-        } else if (CLASS_STRING.equals(object.getClass().getName()) || CLASS_CHAR.equals(object.getClass().getName())) {
+        } else if (CLASS_STRING.equals(object.getClass().getName()) || CLASS_CHAR.equals(object.getClass().getName()) || CLASS_TIMESTAMP.equals(object.getClass().getName()) || CLASS_DATE.equals(object.getClass().getName())) {
             return "\"" + object.toString() + "\"";
         } else {
             return object.toString();
