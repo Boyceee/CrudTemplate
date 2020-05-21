@@ -21,7 +21,11 @@ only one crud interface will work.And the answer to the question that witch one 
 2.Make sure that you are using POJO's field name as the request parameter's key,not database's column name.  
 3."/query" interface basically support all of the http's methods.  
 4.Up to now,"/add" interface only support the content type of "application/x-www-form-urlencoded" and "application/json".
-As for http's methods,as long as they supported these two content type,it will be OK.
+As for http's methods,as long as they supported these two content type,it will be OK.  
+5.Up to now,"/update" interface only support the content type of "application/x-www-form-urlencoded" and "application/json".
+As for http's methods,as long as they supported these two content type,it will be OK.  
+6.This project is very dependent on database's automatic transfer of datatype,so it's highly recommended to 
+use a database supporting the automatic transfer if you want to use this project.  
 
 1.如果添加的增删改查接口路径中包含其他增删改查接口的路径，或被其他接口路径包含，
 那么只有一个接口会起作用。哪个接口会起作用取决于接口路径的hashCode() & (map容量 -1)和接口被添加的顺序。  
@@ -29,3 +33,6 @@ As for http's methods,as long as they supported these two content type,it will b
 3."/query"接口支持基本上所有http的method方法。  
 4."/add"接口目前只支持content type为"application/x-www-form-urlencoded"和"application/json"的请求，至于http的method，
 只要该method支持这两种content type，就可以使用。  
+5."/update"接口目前只支持content type为"application/x-www-form-urlencoded"和"application/json"的请求，至于http的method，
+只要该method支持这两种content type，就可以使用。  
+6.这个项目非常依赖数据库的数据类型自动转换，所以如果你想使用这个项目，非常推荐使用具有自动转换功能的数据库。  
