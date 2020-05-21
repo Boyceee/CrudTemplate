@@ -2,6 +2,7 @@ package com.boyce.crud.template.controller;
 
 import com.boyce.crud.template.service.AddService;
 import com.boyce.crud.template.service.QueryService;
+import com.boyce.crud.template.service.UpdateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class CrudController {
     private QueryService queryService;
     @Autowired
     private AddService addService;
+    @Autowired
+    private UpdateService updateService;
 
     /**
      * add interfaces
@@ -77,6 +80,10 @@ public class CrudController {
                 add(entry.getKey(), request, response);
                 break;
             }
+            if (request.getRequestURI().startsWith(entry.getKey() + "/update")) {
+                update(entry.getKey(), request, response);
+                break;
+            }
         }
         return null;
     }
@@ -120,6 +127,31 @@ public class CrudController {
             response.setCharacterEncoding("UTF-8");
             writer = response.getWriter();
             addService.add(request, dispatchedInterfaces.get(key));
+            writer.println("success");
+        } catch (Exception e) {
+            writer.println("error:" + e.getMessage());
+        } finally {
+            writer.flush();
+            writer.close();
+        }
+    }
+
+    /**
+     * do update
+     * Up to now,"/update" interface only support the content type of "application/x-www-form-urlencoded" and "application/json".
+     * As for http's methods,as long as they supported these two content type,it will be OK.
+     *
+     * @param key
+     * @param request
+     * @param response
+     */
+    public void update(String key, HttpServletRequest request, HttpServletResponse response) {
+        PrintWriter writer = null;
+        try {
+            response.setHeader("Content-type", "text/html;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            writer = response.getWriter();
+            updateService.update(request, dispatchedInterfaces.get(key));
             writer.println("success");
         } catch (Exception e) {
             writer.println("error:" + e.getMessage());
