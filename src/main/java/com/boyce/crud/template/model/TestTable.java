@@ -1,6 +1,7 @@
 package com.boyce.crud.template.model;
 
 import com.boyce.crud.template.annotation.Column;
+import com.boyce.crud.template.annotation.Id;
 import com.boyce.crud.template.annotation.Table;
 
 import java.util.Date;
@@ -12,19 +13,29 @@ import java.util.Date;
  */
 @Table(value = "test1")
 public class TestTable {
-    private String id;
+    @Id
+    @Column(value = "id")
+    private String testId;
     private String name;
     @Column(value = "save_time")
     private Date saveTime;
     @Column(value = "is_ok")
     private int isOk;
 
-    public String getId() {
-        return id;
+    public String getTestId() {
+        return testId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTestId(String testId) {
+        this.testId = testId;
+    }
+
+    public int getIsOk() {
+        return isOk;
+    }
+
+    public void setIsOk(int isOk) {
+        this.isOk = isOk;
     }
 
     public String getName() {
