@@ -35,7 +35,9 @@ public class AddServiceImpl implements AddService {
      */
     @Override
     public void add(HttpServletRequest httpServletRequest, Object object) throws Exception {
-        //hasParameter:when the column and value is null,throw a exception before execute wrong sql.
+        /**
+         * hasParameter : when the column and value is null,throw a exception before execute wrong sql.
+         */
         boolean hasParameter = false;
         String objectName = object.getClass().getName();
         StringBuilder sql = new StringBuilder();
@@ -43,7 +45,6 @@ public class AddServiceImpl implements AddService {
         StringBuilder value = new StringBuilder();
         Map<String, String> fieldsMap = ClassUtils.getFields(object);
         String contentType = httpServletRequest.getContentType();
-        String method = httpServletRequest.getMethod();
         sql.append("insert into ").append(ClassUtils.getTable(object).get(objectName));
         if (CONTENT_TYPE_FORM.equals(contentType)) {
             for (Map.Entry<String, String> entry : fieldsMap.entrySet()) {
