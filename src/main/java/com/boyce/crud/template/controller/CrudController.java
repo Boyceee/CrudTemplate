@@ -1,6 +1,7 @@
 package com.boyce.crud.template.controller;
 
 import com.boyce.crud.template.service.AddService;
+import com.boyce.crud.template.service.DeleteService;
 import com.boyce.crud.template.service.QueryService;
 import com.boyce.crud.template.service.UpdateService;
 import org.slf4j.Logger;
@@ -22,7 +23,6 @@ import java.util.Map;
  */
 @Component
 public class CrudController {
-
     private static final Logger logger = LoggerFactory.getLogger(CrudController.class);
     private static Map<String, Object> dispatchedInterfaces = new HashMap<>();
     @Autowired
@@ -31,9 +31,11 @@ public class CrudController {
     private AddService addService;
     @Autowired
     private UpdateService updateService;
+    @Autowired
+    private DeleteService deleteService;
 
     /**
-     * add interfaces
+     * add a interface
      *
      * @param string
      * @param object
@@ -43,7 +45,7 @@ public class CrudController {
     }
 
     /**
-     * remove interfaces
+     * remove a interface
      *
      * @param string
      * @param object
@@ -82,6 +84,10 @@ public class CrudController {
             }
             if (request.getRequestURI().startsWith(entry.getKey() + "/update")) {
                 update(entry.getKey(), request, response);
+                break;
+            }
+            if (request.getRequestURI().startsWith(entry.getKey() + "/delete")) {
+                delete(entry.getKey(), request, response);
                 break;
             }
         }
@@ -152,6 +158,31 @@ public class CrudController {
             response.setCharacterEncoding("UTF-8");
             writer = response.getWriter();
             updateService.update(request, dispatchedInterfaces.get(key));
+            writer.println("success");
+        } catch (Exception e) {
+            writer.println("error:" + e.getMessage());
+        } finally {
+            writer.flush();
+            writer.close();
+        }
+    }
+
+    /**
+     * do delete
+     * Up to now,"/delete" interface only support the content type of "application/x-www-form-urlencoded" and "application/json".
+     * As for http's methods,as long as they supported these two content type,it will be OK.
+     *
+     * @param key
+     * @param request
+     * @param response
+     */
+    public void delete(String key, HttpServletRequest request, HttpServletResponse response) {
+        PrintWriter writer = null;
+        try {
+            response.setHeader("Content-type", "text/html;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            writer = response.getWriter();
+            deleteService.delete(request, dispatchedInterfaces.get(key));
             writer.println("success");
         } catch (Exception e) {
             writer.println("error:" + e.getMessage());
