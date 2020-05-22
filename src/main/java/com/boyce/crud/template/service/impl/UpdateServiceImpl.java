@@ -51,11 +51,10 @@ public class UpdateServiceImpl implements UpdateService {
         StringBuilder sql = new StringBuilder();
         StringBuilder set = new StringBuilder();
         StringBuilder where = new StringBuilder();
+        sql.append("update ").append(ClassUtils.getTable(object).get(objectName)).append(" set ");
         where.append(" where ").append(idColumn.get(SQL_COLUMN)).append(" = ");
         Map<String, String> fieldsMap = ClassUtils.getFields(object);
         String contentType = httpServletRequest.getContentType();
-        String method = httpServletRequest.getMethod();
-        sql.append("update ").append(ClassUtils.getTable(object).get(objectName)).append(" set ");
         if (CONTENT_TYPE_FORM.equals(contentType)) {
             if (StringUtils.isEmpty(httpServletRequest.getParameter(idColumn.get(FIELD_NAME)))) {
                 logger.error("can not get the primary key,annotated by @id or named id in POJO, from request");
