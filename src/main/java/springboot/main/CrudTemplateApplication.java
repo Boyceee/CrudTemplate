@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = {"com.boyce.crud.template"})
 public class CrudTemplateApplication {
     public static void main(String[] args) {
-        CrudController.addCrudInterface("/test/dispatch",new TestTable());
+        CrudController.addCrudInterface("/test",new TestTable());
         SpringApplication.run(CrudTemplateApplication.class,args);
     }
 }
