@@ -68,7 +68,7 @@ public class DeleteServiceImpl implements DeleteService {
             throw new Exception("the contentType of :" + contentType + " have not been supported");
         }
         sql.append(where);
-        System.out.println("DeleteServiceImpl execute sql" + sql);
+        System.out.println("DeleteServiceImpl execute sql:" + sql);
         jdbcOperations.execute(sql.toString());
     }
 }
