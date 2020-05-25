@@ -4,8 +4,6 @@ import com.boyce.crud.template.service.AddService;
 import com.boyce.crud.template.service.DeleteService;
 import com.boyce.crud.template.service.QueryService;
 import com.boyce.crud.template.service.UpdateService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,7 +21,6 @@ import java.util.Map;
  */
 @Component
 public class CrudController {
-    private static final Logger logger = LoggerFactory.getLogger(CrudController.class);
     private static Map<String, Object> dispatchedInterfaces = new HashMap<>();
     @Autowired
     private QueryService queryService;
@@ -50,9 +47,9 @@ public class CrudController {
      * @param string
      * @param object
      */
-    public static void removeCrudInterface(String string, Object object) {
+    public static void removeCrudInterface(String string, Object object) throws Exception{
         if (!dispatchedInterfaces.remove(string, object)) {
-            logger.error("removeCRUDInterface error : There is no such key-value in the Map.");
+            throw new Exception("removeCRUDInterface error : There is no such key-value in the Map.");
         }
     }
 

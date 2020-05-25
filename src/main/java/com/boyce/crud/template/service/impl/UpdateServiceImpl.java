@@ -3,8 +3,6 @@ package com.boyce.crud.template.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.boyce.crud.template.service.UpdateService;
 import com.boyce.crud.template.util.ClassUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Service;
@@ -21,7 +19,6 @@ import java.util.Map;
  */
 @Service
 public class UpdateServiceImpl implements UpdateService {
-    private static final Logger logger = LoggerFactory.getLogger(UpdateServiceImpl.class);
     static final String CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
     static final String CONTENT_TYPE_JSON = "application/json";
     static final String FIELD_NAME = "fieldName";
@@ -40,7 +37,6 @@ public class UpdateServiceImpl implements UpdateService {
     public void update(HttpServletRequest httpServletRequest, Object object) throws Exception {
         Map<String, String> idColumn = ClassUtils.getIdColumn(object);
         if (idColumn.size() == 0) {
-            logger.error("can not get a field annotated by @Id or named id from the POJO");
             throw new Exception("can not get a field annotated by @Id or named id from the POJO");
         }
         /**
@@ -57,7 +53,6 @@ public class UpdateServiceImpl implements UpdateService {
         String contentType = httpServletRequest.getContentType();
         if (CONTENT_TYPE_FORM.equals(contentType)) {
             if (StringUtils.isEmpty(httpServletRequest.getParameter(idColumn.get(FIELD_NAME)))) {
-                logger.error("can not get the primary key,annotated by @id or named id in POJO, from request");
                 throw new Exception("can not get the primary key,annotated by @id or named id in POJO, from request");
             }
             where.append(httpServletRequest.getParameter(idColumn.get(FIELD_NAME)));
@@ -77,7 +72,6 @@ public class UpdateServiceImpl implements UpdateService {
             }
             JSONObject jsonObject = (JSONObject) JSONObject.parse(json.toString());
             if (StringUtils.isEmpty(jsonObject.getString(idColumn.get(FIELD_NAME)))) {
-                logger.error("can not get the primary key,annotated by @id or named id in POJO, from request");
                 throw new Exception("can not get the primary key,annotated by @id or named id in POJO, from request");
             }
             where.append(jsonObject.getString(idColumn.get(FIELD_NAME)));
@@ -88,15 +82,13 @@ public class UpdateServiceImpl implements UpdateService {
                 }
             }
         } else {
-            logger.error("the contentType of :" + contentType + " have not been supported");
             throw new Exception("the contentType of :" + contentType + " have not been supported");
         }
         if (hasParameter) {
             sql.append(set.substring(1)).append(where);
-            logger.info("execute sql:" + sql);
+            System.out.println("UpdateServiceImpl execute sql:" + sql);
             jdbcOperations.execute(sql.toString());
         } else {
-            logger.error("parameters have not been accepted");
             throw new Exception("parameters have not been accepted");
         }
     }

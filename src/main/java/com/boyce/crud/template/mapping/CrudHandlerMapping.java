@@ -15,7 +15,6 @@ import java.util.Map;
  */
 @Component
 public class CrudHandlerMapping extends AbstractHandlerMapping {
-
     private final static String DISPATCH_METHOD = "dispatch";
 
     /**

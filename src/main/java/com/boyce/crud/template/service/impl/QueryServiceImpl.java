@@ -2,8 +2,6 @@ package com.boyce.crud.template.service.impl;
 
 import com.boyce.crud.template.service.QueryService;
 import com.boyce.crud.template.util.ClassUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Service;
@@ -24,7 +22,6 @@ public class QueryServiceImpl implements QueryService {
     private static final String CLASS_CHAR = "java.lang.Character";
     private static final String CLASS_DATE = "java.util.Date";
     private static final String CLASS_TIMESTAMP = "java.sql.Timestamp";
-    private static final Logger logger = LoggerFactory.getLogger(QueryServiceImpl.class);
     @Autowired
     private JdbcOperations jdbcOperations;
 
@@ -47,13 +44,8 @@ public class QueryServiceImpl implements QueryService {
         }
         Map<String, String> tableMap = ClassUtils.getTable(object);
         sql.append("select ").append(columns.substring(1)).append(" from ").append(tableMap.get(objectName));
-        logger.info("execute sql:" + sql);
-        try {
-            list = jdbcOperations.queryForList(sql.toString());
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-            throw e;
-        }
+        System.out.println("QueryServiceImpl execute sql:" + sql);
+        list = jdbcOperations.queryForList(sql.toString());
         return parseListToJson(list, objectName, reverseFieldsMap(fieldsMap));
     }
 

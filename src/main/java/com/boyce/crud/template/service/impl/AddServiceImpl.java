@@ -3,8 +3,6 @@ package com.boyce.crud.template.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.boyce.crud.template.service.AddService;
 import com.boyce.crud.template.util.ClassUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Service;
@@ -20,7 +18,6 @@ import java.util.Map;
  */
 @Service
 public class AddServiceImpl implements AddService {
-    private static final Logger logger = LoggerFactory.getLogger(AddServiceImpl.class);
     static final String CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
     static final String CONTENT_TYPE_JSON = "application/json";
     @Autowired
@@ -71,7 +68,6 @@ public class AddServiceImpl implements AddService {
                 }
             }
         } else {
-            logger.error("the contentType of :" + contentType + " have not been supported");
             throw new Exception("the contentType of :" + contentType + " have not been supported");
         }
         if (hasParameter) {
@@ -80,10 +76,9 @@ public class AddServiceImpl implements AddService {
             value = new StringBuilder(value.substring(1));
             value.insert(0, "(").append(")");
             sql.append(" ").append(column).append(" values ").append(value);
-            logger.info("execute sql:" + sql);
+            System.out.println("AddServiceImpl execute sql:" + sql);
             jdbcOperations.execute(sql.toString());
         } else {
-            logger.error("parameters have not been accepted");
             throw new Exception("parameters have not been accepted");
         }
     }
