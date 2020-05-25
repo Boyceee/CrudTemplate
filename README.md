@@ -40,3 +40,16 @@ use a database supporting the automatic transfer if you want to use this project
 6."/delete"接口目前只支持content type为"application/x-www-form-urlencoded"和"application/json"的请求，至于http的method，
 只要该method支持这两种content type，就可以使用。  
 7.这个项目非常依赖数据库的数据类型自动转换，所以如果你想使用这个项目，非常推荐使用具有自动转换功能的数据库。  
+
+### Demo
+If you are using the source code,here are all the things you need to do:  
+1.Write your own POJO according to your database table.You can refer to my TestTable.  
+2.Change 'CrudController.addCrudInterface("/test",new TestTable());' to your path and POJO.  
+3.Request "http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete".  
+
+If you are using the jar of this project,here are all the things you need to do:
+1.Get the jar of this project .  
+2.Add "com.boyce.crud.template" to your @SpringBootApplication's scanBasePackages.  
+3.Write your own POJO according to your database table.You can refer to my TestTable.  
+4.Do 'CrudController.addCrudInterface("/test",new POJO());' before run your SpringApplication.  
+4.Request "http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete".  
