@@ -44,7 +44,7 @@ use a database supporting the automatic transfer if you want to use this project
 ### Demo
 If you are using the source code,here are all the things you need to do:  
 1.Write your own POJO according to your database table.You can refer to my TestTable.  
-2.Change 'CrudController.addCrudInterface("/test",new TestTable());' to your path and POJO.  
+2.Change 'CrudController.addCrudInterface("/test",new TestTable());' to your path and POJO in the CrudTemplateApplication.  
 3.Request "http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete".  
 
 If you are using the jar of this project,here are all the things you need to do:
@@ -52,4 +52,16 @@ If you are using the jar of this project,here are all the things you need to do:
 2.Add "com.boyce.crud.template" to your @SpringBootApplication's scanBasePackages.  
 3.Write your own POJO according to your database table.You can refer to my TestTable.  
 4.Do 'CrudController.addCrudInterface("/test",new POJO());' before run your SpringApplication.  
-4.Request "http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete".  
+5.Request "http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete".  
+
+如果你想要使用源码，以下是你需要做的事：  
+1.根据你的数据库表结构编写你自己的POJO。你可以参考我的TestTable。  
+2.修改CrudTemplateApplication中的'CrudController.addCrudInterface("/test",new TestTable());'，将路径与POJO修改为你自己的内容。  
+3.请求"http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete"。  
+
+如果你想要使用jar包，以下是你需要做的事：  
+1.获取这个项目的jar包。  
+2.在你的@SpringBootApplication的scanBasePackages中，添加"com.boyce.crud.template"路径。  
+3.根据你的数据库表结构编写你自己的POJO。你可以参考我的TestTable。  
+4.在运行你的SpringApplication前，执行'CrudController.addCrudInterface("/test",new POJO());'。  
+5.请求"http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete"。  
