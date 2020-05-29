@@ -5,16 +5,6 @@ Using CrudTemplate,you can create crud interfaces without write any code but a P
 
 通过使用CrudTemplate，你只需要输入一个POJO和接口地址，就可以获得一套增删改查的接口。后续计划实现特殊要求的增删改查。
 
-### Guide
-CrudTemplate used SpringBoot and some maven dependencies.
-So it will be really easy if you used the SpringBoot too.
-Using SpringBoot,all you need to do is importing the jar of this project
-and adding "com.boyce.crud.template" to your @SpringBootApplication's(or @ComponentScan's) scanBasePackages. 
-
-CrudTemplate使用了SpringBoot框架以及一些maven依赖。所以如果你也使用SpringBoot的话用起来会很方便。
-如果你需要使用CrudTemplate，你只需要导入这个项目的jar包，并在你的SpringBoot启动类上，通过@SpringBootApplication或者@ComponentScan，
-将"com.boyce.CrudTemplate"包添加到扫描路径下即可。
-
 ### Warning
 1.If you add a crud interface that has a path containing another crud interface's path,or being contained,
 only one crud interface will work.And the answer to the question that witch one will work depend on their path's hashCode() & (map's capacity -1) and the order of addition.  
@@ -41,18 +31,26 @@ use a database supporting the automatic transfer if you want to use this project
 只要该method支持这两种content type，就可以使用。  
 7.这个项目非常依赖数据库的数据类型自动转换，所以如果你想使用这个项目，非常推荐使用具有自动转换功能的数据库。  
 
-### Demo
+### Guide
+##### CrudTemplate used SpringBoot and some maven dependencies,so it will be really easy if you used the SpringBoot too,which is also highly recommended.
+##### 这个项目使用了SpringBoot和一些maven依赖，所以强烈建议你也使用一个基于SpringBoot的项目，这会非常容易兼容。
 If you are using the source code,here are all the things you need to do:  
 1.Write your own POJO according to your database table.You can refer to my TestTable.  
 2.Change 'CrudController.addCrudInterface("/test",new TestTable());' to your path and POJO in the CrudTemplateApplication.  
 3.Request "http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete".  
 
-If you are using the jar of this project,here are all the things you need to do:
-1.Get the jar of this project .  
-2.Add "com.boyce.crud.template" to your @SpringBootApplication's scanBasePackages.  
+If you are using the jar of this project,here are all the things you need to do:  
+1.Get the jar of this project in my maven repository web:https://mvnrepository.com/artifact/com.github.Boyceee.  
+2.Add "com.boyce.crud.template" and your own package path to your @SpringBootApplication's scanBasePackages.  
 3.Write your own POJO according to your database table.You can refer to my TestTable.  
-4.Do 'CrudController.addCrudInterface("/test",new POJO());' before run your SpringApplication.  
-5.Request "http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete".  
+4.Write 'CrudController.addCrudInterface("/test",new POJO());' at wherever it can be executed.  
+5.Make sure that there is a datasource in your application.properties.  
+6.If your maven report an error that the jar of this project cannot be found,
+check that if you set a mirror mirroring of central(like aliyun) in your settings.xml.
+If you did,then you need to add a default mirror mirroring of * at the last of the mirrors.
+Because sometimes aliyun(or other) won't synchronize there repository in time,
+so you need to add a default mirror to make sure maven can find this jar in their own repository at last.   
+7.Request "http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete".  
 
 如果你想要使用源码，以下是你需要做的事：  
 1.根据你的数据库表结构编写你自己的POJO。你可以参考我的TestTable。  
@@ -60,8 +58,12 @@ If you are using the jar of this project,here are all the things you need to do:
 3.请求"http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete"。  
 
 如果你想要使用jar包，以下是你需要做的事：  
-1.获取这个项目的jar包。  
-2.在你的@SpringBootApplication的scanBasePackages中，添加"com.boyce.crud.template"路径。  
+1.在我的maven仓库获取这个项目的jar包，地址为：https://mvnrepository.com/artifact/com.github.Boyceee。  
+2.在你的@SpringBootApplication的scanBasePackages中，添加"com.boyce.crud.template"路径和你自己的包路径。  
 3.根据你的数据库表结构编写你自己的POJO。你可以参考我的TestTable。  
-4.在运行你的SpringApplication前，执行'CrudController.addCrudInterface("/test",new POJO());'。  
-5.请求"http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete"。  
+4.在任何可被执行到的地方写'CrudController.addCrudInterface("/test",new POJO());'。  
+5.确保在你的application.properties中有一个datasource数据源。  
+6.如果你的maven报错找不到这个jar包，检查一下在你的settings.xml中有没有配置一个映射了central的镜像（比如阿里云）。
+如果你做了这个映射，你需要在mirrors的最后添加一个映射*的默认镜像。因为有时候阿里云（或者其他）不会实时同步他们的仓库，
+所以你需要添加一个默认镜像来保证maven最终可以在自己的仓库中找到这个jar包。  
+7.请求"http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete"。  
