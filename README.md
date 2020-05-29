@@ -58,7 +58,7 @@ so you need to add a default mirror to make sure maven can find this jar in thei
 3.请求"http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete"。  
 
 如果你想要使用jar包，以下是你需要做的事：  
-1.在我的maven仓库获取这个项目的jar包，地址为：https://mvnrepository.com/artifact/com.github.Boyceee。  
+1.在我的maven仓库获取这个项目的jar包，地址为：https://mvnrepository.com/artifact/com.github.Boyceee.  
 2.在你的@SpringBootApplication的scanBasePackages中，添加"com.boyce.crud.template"路径和你自己的包路径。  
 3.根据你的数据库表结构编写你自己的POJO。你可以参考我的TestTable。  
 4.在任何可被执行到的地方写'CrudController.addCrudInterface("/test",new POJO());'。  
