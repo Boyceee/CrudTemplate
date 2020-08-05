@@ -32,8 +32,8 @@ use a database supporting the automatic transfer if you want to use this project
 7.这个项目非常依赖数据库的数据类型自动转换，所以如果你想使用这个项目，非常推荐使用具有自动转换功能的数据库。例如，强烈推荐使用MySQL数据库，这也是我在测试项目时所使用的数据库。  
 
 ### Guide
-##### CrudTemplate used SpringBoot and some maven dependencies,so it will be really easy if you used the SpringBoot too,which is also highly recommended.
-##### 这个项目使用了SpringBoot和一些maven依赖，所以强烈建议你也使用一个基于SpringBoot的项目，这会非常容易兼容。
+##### CrudTemplate used SpringBoot and some maven dependencies,so it will be really easy if you used the SpringBoot too,which is also highly recommended.The following guide is also based on SpringBoot.
+##### 这个项目使用了SpringBoot和一些maven依赖，所以强烈建议你也使用一个基于SpringBoot的项目，这会非常容易兼容。以下教程也是基于SpringBoot的。
 If you are using the source code,here are all the things you need to do:  
 1.Write your own POJO according to your database table.You can refer to my TestTable.  
 2.Change 'CrudController.addCrudInterface("/test",new TestTable());' to your path and POJO in the CrudTemplateApplication.  
@@ -58,12 +58,12 @@ so you need to add a default mirror to make sure maven can find this jar in thei
 3.请求"http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete"。  
 
 如果你想要使用jar包，以下是你需要做的事：  
-1.在我的maven仓库获取这个项目的jar包，地址为：https://mvnrepository.com/artifact/com.github.Boyceee.  
+1.在我的maven仓库获取这个项目的jar包对应maven仓库地址，我的maven仓库为：https://mvnrepository.com/artifact/com.github.Boyceee.  
 2.在你的@SpringBootApplication的scanBasePackages中，添加"com.boyce.crud.template"路径和你自己的包路径。  
 3.根据你的数据库表结构编写你自己的POJO。你可以参考我的TestTable。  
 4.在任何可被执行到的地方写'CrudController.addCrudInterface("/test",new POJO());'。  
 5.确保在你的application.properties中有一个datasource数据源。  
 6.如果你的maven报错找不到这个jar包，检查一下在你的settings.xml中有没有配置一个映射了central的镜像（比如阿里云）。
 如果你做了这个映射，你需要在mirrors的最后添加一个映射*的默认镜像。因为有时候阿里云（或者其他）不会实时同步他们的仓库，
-所以你需要添加一个默认镜像来保证maven最终可以在自己的仓库中找到这个jar包。  
+所以你需要添加一个默认镜像来保证maven最终可以在自己的仓库中找到这个jar包。（2020-08-05确认阿里云仓库已同步此项目）  
 7.请求"http://ip:port/test/query","http://ip:port/test/add","http://ip:port/test/update","http://ip:port/test/delete"。  
