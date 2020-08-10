@@ -1,13 +1,13 @@
 # CrudTemplate
 
 ### Introduce
-Using CrudTemplate,you can create crud interfaces without write any code but a POJO and a path.
+Using CrudTemplate,you can create CRUD interfaces without write any code but a POJO and a path.
 
 通过使用CrudTemplate，你只需要输入一个POJO和接口地址，就可以获得一套增删改查的接口。
 
 ### Warning
-1.If you add a crud interface that has a path containing another crud interface's path,or being contained,
-only one crud interface will work.And the answer to the question that witch one will work depend on their path's hashCode() & (map's capacity -1) and the order of addition.  
+1.If you add a CRUD interface that has a path containing another CRUD interface's path,or being contained,
+only one CRUD interface will work.And the answer to the question that witch one will work depend on their path's hashCode() & (map's capacity -1) and the order of addition.  
 2.Make sure that you are using POJO's field name as the request parameter's key,not database's column name.  
 3."/query" interface basically support all of the http's methods.  
 4.Up to now,"/add" interface only support the content type of "application/x-www-form-urlencoded" and "application/json".
